@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:test_firebase/home_page.dart';
-import 'login_page.dart';
+import '../pages/home_page.dart';
+import 'auth_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class MainPage extends StatelessWidget {
             return const HomePage();
           }
           else{
-            return const LogIn();
+            return const AuthPage();
           }
         }
       ),

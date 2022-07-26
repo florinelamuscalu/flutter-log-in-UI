@@ -2,13 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-/*
-void main() async {
-  runApp(const LogIn());
-}
-*/
+import './forgot_password_page.dart';
+
+
 class LogIn extends StatefulWidget {
-  const LogIn({Key? key}) : super(key: key);
+  final VoidCallback showRegisterPage;
+  const LogIn({Key? key, required this.showRegisterPage}) : super(key: key);
 
   @override
   State<LogIn> createState() => _LogIn();
@@ -117,6 +116,30 @@ class _LogIn extends State<LogIn> {
                     ),
                     const SizedBox(height: 10),
 
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children:  [
+                          GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (contex){
+                            return const ForgotPasswordPage();
+                          },),);
+                        },
+                          child:  const Text(
+                            'Forget password?',
+                            style: TextStyle(
+                              color: Colors.pink,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+
                     //  Sigin Button
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -144,21 +167,24 @@ class _LogIn extends State<LogIn> {
                     // Not member? register now
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(
+                      children: [
+                        const Text(
                           'Not a member?',
                           style: TextStyle(
                             //color: Colors.purple,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
-                          'Register now',
-                          style: TextStyle(
-                            color: Colors.pink,
-                            fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: widget.showRegisterPage,
+                          child: const Text(
+                            'Register now',
+                            style: TextStyle(
+                              color: Colors.pink,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     )
                   ]),
